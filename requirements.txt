@@ -1,0 +1,17 @@
+# PortScannerPro — Requirements
+# All dependencies are Python standard library — NO pip installs needed!
+#
+# Python >= 3.8 required
+#
+# Standard library modules used:
+#   tkinter        — GUI framework
+#   sqlite3        — Database
+#   socket         — Network scanning
+#   threading      — Background scan thread
+#   concurrent.futures — ThreadPoolExecutor
+#   csv            — CSV export
+#   json           — JSON export
+#   time           — Timing
+#   datetime       — Timestamps
+#   os             — File paths
+#   sys            — Path manipulation
