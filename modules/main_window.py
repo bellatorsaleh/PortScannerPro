@@ -1,181 +1,205 @@
 """
-Main Window - Primary application frame with tabbed navigation.
+Main Window - Elite Hacking Terminal Theme
 """
-
 import tkinter as tk
 from tkinter import ttk
+import time
+import threading
+import random
+import socket
 
 from modules.scan_tab import ScanTab
 from modules.history_tab import HistoryTab
 from modules.dashboard_tab import DashboardTab
 from modules.settings_tab import SettingsTab
 
-# === DARK CYBER THEME ===
-BG_DARK      = "#0a0e1a"
-BG_PANEL     = "#0d1422"
-BG_CARD      = "#111827"
-ACCENT_CYAN  = "#00d4ff"
-ACCENT_GREEN = "#00ff88"
-ACCENT_RED   = "#ff4466"
-ACCENT_ORANGE= "#ff9900"
-TEXT_PRIMARY = "#e0f0ff"
-TEXT_DIM     = "#4a6a7a"
-TEXT_MUTED   = "#2a4a5a"
-BORDER       = "#1a2a3a"
-
+# === ELITE HACKER PALETTE ===
+BG          = "#000000"
+BG2         = "#050505"
+BG3         = "#0a0a0a"
+BG4         = "#0d1117"
+G1          = "#00ff41"   # matrix green
+G2          = "#00cc33"
+G3          = "#008f11"
+C1          = "#00ffff"   # cyan
+C2          = "#00cccc"
+R1          = "#ff0000"   # red alert
+O1          = "#ff8800"   # orange
+Y1          = "#ffff00"   # yellow
+P1          = "#cc00ff"   # purple
+W1          = "#ffffff"
+DIM         = "#1a3a1a"
+DIMMER      = "#0a1a0a"
 
 class MainWindow:
     def __init__(self, root, db):
         self.root = root
-        self.db = db
+        self.db   = db
         self._setup_root()
         self._apply_styles()
         self._build_ui()
+        self._start_live_updates()
 
     def _setup_root(self):
-        self.root.title("PortScannerPro — Advanced Network Security Analyzer")
-        self.root.geometry("1100x740")
-        self.root.minsize(900, 620)
-        self.root.configure(bg=BG_DARK)
-
-        # Icon (text-based since no image file)
-        try:
-            self.root.iconbitmap(default=None)
-        except Exception:
-            pass
+        self.root.title("[ GHOST_SCANNER v3.0 ] — Elite Network Recon Tool")
+        self.root.geometry("1280x860")
+        self.root.minsize(1100, 720)
+        self.root.configure(bg=BG)
 
     def _apply_styles(self):
-        style = ttk.Style()
-        style.theme_use("clam")
-
-        style.configure(".", background=BG_DARK, foreground=TEXT_PRIMARY,
-                        font=("Courier", 10))
-        style.configure("TFrame", background=BG_DARK)
-        style.configure("TLabel", background=BG_DARK, foreground=TEXT_PRIMARY,
-                        font=("Courier", 10))
-        style.configure("TButton",
-                        background=BG_CARD, foreground=ACCENT_CYAN,
-                        relief="flat", borderwidth=0, padding=(12, 6),
-                        font=("Courier", 10, "bold"))
-        style.map("TButton",
-                  background=[("active", "#1a2a4a"), ("pressed", "#0a1a2a")],
-                  foreground=[("active", ACCENT_CYAN)])
-
-        style.configure("Accent.TButton",
-                        background=ACCENT_CYAN, foreground=BG_DARK,
-                        font=("Courier", 10, "bold"), padding=(16, 8))
-        style.map("Accent.TButton",
-                  background=[("active", "#00aacc"), ("pressed", "#008899")])
-
-        style.configure("Stop.TButton",
-                        background=ACCENT_RED, foreground="#ffffff",
-                        font=("Courier", 10, "bold"), padding=(16, 8))
-
-        style.configure("TEntry",
-                        fieldbackground=BG_CARD, foreground=TEXT_PRIMARY,
-                        insertcolor=ACCENT_CYAN, borderwidth=1,
-                        relief="flat", font=("Courier", 11))
-        style.map("TEntry", fieldbackground=[("focus", "#151f2e")])
-
-        style.configure("TCombobox",
-                        fieldbackground=BG_CARD, foreground=TEXT_PRIMARY,
-                        background=BG_CARD, selectbackground=ACCENT_CYAN,
-                        font=("Courier", 10))
-
-        style.configure("TNotebook", background=BG_DARK, borderwidth=0)
-        style.configure("TNotebook.Tab",
-                        background=BG_PANEL, foreground=TEXT_DIM,
-                        padding=(18, 10), font=("Courier", 10, "bold"),
-                        borderwidth=0)
-        style.map("TNotebook.Tab",
-                  background=[("selected", BG_CARD)],
-                  foreground=[("selected", ACCENT_CYAN)])
-
-        style.configure("Treeview",
-                        background=BG_CARD, foreground=TEXT_PRIMARY,
-                        fieldbackground=BG_CARD, rowheight=26,
-                        font=("Courier", 10))
-        style.configure("Treeview.Heading",
-                        background=BG_PANEL, foreground=ACCENT_CYAN,
-                        font=("Courier", 10, "bold"), relief="flat")
-        style.map("Treeview",
-                  background=[("selected", "#1a3a5a")],
-                  foreground=[("selected", ACCENT_CYAN)])
-
-        style.configure("TProgressbar",
-                        background=ACCENT_CYAN, troughcolor=BG_PANEL,
-                        borderwidth=0, thickness=6)
-
-        style.configure("TCheckbutton",
-                        background=BG_DARK, foreground=TEXT_PRIMARY,
-                        font=("Courier", 10))
-        style.configure("TScale",
-                        background=BG_DARK, troughcolor=BG_PANEL)
-        style.configure("TSeparator", background=BORDER)
-        style.configure("TLabelframe",
-                        background=BG_DARK, foreground=ACCENT_CYAN,
-                        borderwidth=1, relief="solid",
-                        font=("Courier", 10, "bold"))
-        style.configure("TLabelframe.Label",
-                        background=BG_DARK, foreground=ACCENT_CYAN,
-                        font=("Courier", 10, "bold"))
+        s = ttk.Style()
+        s.theme_use("clam")
+        s.configure(".",              background=BG,   foreground=G1,  font=("Courier New", 10))
+        s.configure("TFrame",         background=BG)
+        s.configure("TLabel",         background=BG,   foreground=G1,  font=("Courier New", 10))
+        s.configure("TButton",        background=BG3,  foreground=G1,  relief="flat", padding=(10,5), font=("Courier New",10,"bold"))
+        s.map("TButton", background=[("active", BG4)], foreground=[("active", C1)])
+        s.configure("TEntry",         fieldbackground=BG3, foreground=G1, insertcolor=G1, font=("Courier New",11))
+        s.configure("TCombobox",      fieldbackground=BG3, foreground=G1, background=BG3, selectbackground="#001a00", font=("Courier New",10))
+        s.configure("TNotebook",      background=BG,   borderwidth=0)
+        s.configure("TNotebook.Tab",  background=BG2,  foreground=DIM, padding=(22,11), font=("Courier New",10,"bold"))
+        s.map("TNotebook.Tab",        background=[("selected", BG4)], foreground=[("selected", G1)])
+        s.configure("Treeview",       background=BG3,  foreground=G1,  fieldbackground=BG3, rowheight=24, font=("Courier New",10))
+        s.configure("Treeview.Heading", background=BG4, foreground=C1, font=("Courier New",10,"bold"), relief="flat")
+        s.map("Treeview",             background=[("selected","#001800")], foreground=[("selected",C1)])
+        s.configure("TProgressbar",   background=G1,   troughcolor=BG3, borderwidth=0, thickness=6)
+        s.configure("TCheckbutton",   background=BG,   foreground=G1,  font=("Courier New",10))
+        s.configure("TScale",         background=BG,   troughcolor=BG3)
+        s.configure("TScrollbar",     background=BG3,  troughcolor=BG, arrowcolor=G3)
+        s.configure("TLabelframe",    background=BG,   foreground=G1,  borderwidth=1, relief="solid")
+        s.configure("TLabelframe.Label", background=BG, foreground=C1, font=("Courier New",10,"bold"))
 
     def _build_ui(self):
-        # ── Top header bar ──────────────────────────────
-        header = tk.Frame(self.root, bg=BG_PANEL, height=52)
-        header.pack(fill="x", side="top")
-        header.pack_propagate(False)
+        # ══════════════════════════════════════════
+        # TOP BANNER — ASCII art style
+        # ══════════════════════════════════════════
+        banner = tk.Frame(self.root, bg=BG, height=90)
+        banner.pack(fill="x")
+        banner.pack_propagate(False)
 
-        tk.Label(header, text="◈  PORT SCANNER PRO",
-                 bg=BG_PANEL, fg=ACCENT_CYAN,
-                 font=("Courier", 16, "bold")).pack(side="left", padx=18, pady=12)
+        left_banner = tk.Frame(banner, bg=BG)
+        left_banner.pack(side="left", padx=14, pady=6)
 
-        tk.Label(header, text="Advanced Network Security Analyzer",
-                 bg=BG_PANEL, fg=TEXT_DIM,
-                 font=("Courier", 9)).pack(side="left", padx=4)
+        ascii_title = (
+            " ██████╗ ██╗  ██╗ ██████╗ ███████╗████████╗\n"
+            "██╔════╝ ██║  ██║██╔═══██╗██╔════╝╚══██╔══╝\n"
+            "██║  ███╗███████║██║   ██║███████╗   ██║   \n"
+            "██║   ██║██╔══██║██║   ██║╚════██║   ██║   \n"
+            "╚██████╔╝██║  ██║╚██████╔╝███████║   ██║   \n"
+            " ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝  "
+        )
+        tk.Label(left_banner, text=ascii_title,
+                 bg=BG, fg=G1,
+                 font=("Courier New", 7, "bold"),
+                 justify="left").pack(anchor="w")
 
-        tk.Label(header, text="v2.0",
-                 bg=BG_PANEL, fg=TEXT_MUTED,
-                 font=("Courier", 9)).pack(side="right", padx=18)
+        right_banner = tk.Frame(banner, bg=BG)
+        right_banner.pack(side="right", padx=16, pady=6)
 
-        # ── Separator ───────────────────────────────────
-        tk.Frame(self.root, bg=ACCENT_CYAN, height=1).pack(fill="x")
+        # Live clock
+        self.clock_var = tk.StringVar(value="00:00:00")
+        tk.Label(right_banner, textvariable=self.clock_var,
+                 bg=BG, fg=G1,
+                 font=("Courier New", 22, "bold")).pack(anchor="e")
 
-        # ── Notebook (tabs) ─────────────────────────────
+        # IP display
+        try:
+            myip = socket.gethostbyname(socket.gethostname())
+        except Exception:
+            myip = "127.0.0.1"
+        tk.Label(right_banner, text=f"LOCAL_IP :: {myip}",
+                 bg=BG, fg=C1,
+                 font=("Courier New", 9)).pack(anchor="e")
+        tk.Label(right_banner, text="GHOST_SCANNER v3.0  |  ELITE EDITION",
+                 bg=BG, fg=DIM,
+                 font=("Courier New", 8)).pack(anchor="e")
+
+        # Middle info
+        mid_banner = tk.Frame(banner, bg=BG)
+        mid_banner.pack(side="left", padx=20, pady=10)
+        tk.Label(mid_banner, text="SCANNER  |  NETWORK  |  RECON",
+                 bg=BG, fg=C1,
+                 font=("Courier New", 10, "bold")).pack(anchor="w")
+        tk.Label(mid_banner, text="Educational Network Security Tool",
+                 bg=BG, fg=DIM,
+                 font=("Courier New", 9)).pack(anchor="w")
+
+        self.status_var = tk.StringVar(value="● ONLINE")
+        tk.Label(mid_banner, textvariable=self.status_var,
+                 bg=BG, fg=G1,
+                 font=("Courier New", 10, "bold")).pack(anchor="w", pady=(4,0))
+
+        # ── Glowing separator ──
+        sep = tk.Frame(self.root, bg=BG, height=6)
+        sep.pack(fill="x")
+        tk.Frame(sep, bg=G1, height=1).pack(fill="x")
+        tk.Frame(sep, bg=G3, height=1).pack(fill="x", pady=(1,0))
+        tk.Frame(sep, bg=BG, height=2).pack(fill="x")
+        tk.Frame(sep, bg=G3, height=1).pack(fill="x")
+
+        # ── Scrolling ticker ──
+        ticker_frame = tk.Frame(self.root, bg=BG2, height=20)
+        ticker_frame.pack(fill="x")
+        ticker_frame.pack_propagate(False)
+        self.ticker_var = tk.StringVar()
+        self.ticker_var.set(
+            "  >_ GHOST_SCANNER READY  //  NETWORK RECONNAISSANCE ACTIVE  //  "
+            "ALL MODULES LOADED  //  DATABASE CONNECTED  //  "
+            "ENTER TARGET IP TO BEGIN  //  ETHICAL USE ONLY  //  "
+        )
+        tk.Label(ticker_frame, textvariable=self.ticker_var,
+                 bg=BG2, fg=G3,
+                 font=("Courier New", 8)).pack(side="left", padx=4)
+
+        # ══════════════════════════════════════════
+        # NOTEBOOK
+        # ══════════════════════════════════════════
         self.nb = ttk.Notebook(self.root)
-        self.nb.pack(fill="both", expand=True, padx=0, pady=0)
+        self.nb.pack(fill="both", expand=True)
 
-        self.scan_tab     = ScanTab(self.nb, self.db)
-        self.history_tab  = HistoryTab(self.nb, self.db)
-        self.dashboard_tab= DashboardTab(self.nb, self.db)
-        self.settings_tab = SettingsTab(self.nb, self.db)
+        self.scan_tab      = ScanTab(self.nb, self.db)
+        self.history_tab   = HistoryTab(self.nb, self.db)
+        self.dashboard_tab = DashboardTab(self.nb, self.db)
+        self.settings_tab  = SettingsTab(self.nb, self.db)
 
-        self.nb.add(self.scan_tab.frame,      text="  ◉ SCANNER  ")
-        self.nb.add(self.history_tab.frame,   text="  ◫ HISTORY  ")
-        self.nb.add(self.dashboard_tab.frame, text="  ◈ DASHBOARD  ")
-        self.nb.add(self.settings_tab.frame,  text="  ⚙ SETTINGS  ")
+        self.nb.add(self.scan_tab.frame,      text="  ▶  SCANNER      ")
+        self.nb.add(self.history_tab.frame,   text="  ☰  HISTORY      ")
+        self.nb.add(self.dashboard_tab.frame, text="  ◈  DASHBOARD    ")
+        self.nb.add(self.settings_tab.frame,  text="  ⚙  SETTINGS     ")
 
-        def on_tab_change(e):
-            tab = self.nb.index(self.nb.select())
-            if tab == 1:
-                self.history_tab.refresh()
-            elif tab == 2:
-                self.dashboard_tab.refresh()
+        tab_labels = [
+            "SCANNER  //  READY TO SCAN",
+            "HISTORY  //  PAST SESSIONS",
+            "DASHBOARD  //  ANALYTICS",
+            "SETTINGS  //  CONFIG",
+        ]
+        def on_tab(e):
+            idx = self.nb.index(self.nb.select())
+            self.ticker_var.set(f"  >_ {tab_labels[idx]}  //  " * 6)
+            if idx == 1: self.history_tab.refresh()
+            elif idx == 2: self.dashboard_tab.refresh()
+        self.nb.bind("<<NotebookTabChanged>>", on_tab)
 
-        self.nb.bind("<<NotebookTabChanged>>", on_tab_change)
+        # ══ BOTTOM STATUS BAR ══
+        bot = tk.Frame(self.root, bg=BG2, height=24)
+        bot.pack(fill="x", side="bottom")
+        bot.pack_propagate(False)
+        tk.Frame(bot, bg=G1, width=3).pack(side="left", fill="y")
+        self.bot_var = tk.StringVar(
+            value="  STATUS: ONLINE  |  ENGINE: READY  |  DB: CONNECTED  |  THREADS: AVAILABLE")
+        tk.Label(bot, textvariable=self.bot_var,
+                 bg=BG2, fg=DIM,
+                 font=("Courier New", 8)).pack(side="left")
+        tk.Label(bot, text="GHOST_SCANNER © 2025  |  FOR EDUCATIONAL USE ONLY  ",
+                 bg=BG2, fg=DIMMER,
+                 font=("Courier New", 8)).pack(side="right")
 
-        # ── Status bar ──────────────────────────────────
-        status_bar = tk.Frame(self.root, bg=BG_PANEL, height=24)
-        status_bar.pack(fill="x", side="bottom")
-        status_bar.pack_propagate(False)
-
-        tk.Frame(status_bar, bg=ACCENT_CYAN, width=3).pack(side="left")
-        self.status_var = tk.StringVar(value="Ready  |  Idle")
-        tk.Label(status_bar, textvariable=self.status_var,
-                 bg=BG_PANEL, fg=TEXT_DIM,
-                 font=("Courier", 8)).pack(side="left", padx=10)
-
-        tk.Label(status_bar,
-                 text="PortScannerPro © 2025  |  Python + Tkinter + SQLite",
-                 bg=BG_PANEL, fg=TEXT_MUTED,
-                 font=("Courier", 8)).pack(side="right", padx=10)
+    def _start_live_updates(self):
+        def tick():
+            while True:
+                try:
+                    self.clock_var.set(time.strftime("%H:%M:%S"))
+                except Exception:
+                    break
+                time.sleep(1)
+        threading.Thread(target=tick, daemon=True).start()
