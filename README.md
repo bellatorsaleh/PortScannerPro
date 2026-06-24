@@ -1,161 +1,197 @@
- ◈ GHOST_SCANNER (PortScannerPro v3.0)
+# ◈ GHOST_SCANNER (PortScannerPro v3.0)
 
-**Elite Network Reconnaissance & Port Scanning Framework**  
-*Final Term Project — Open Source Software Development (OSSD) · CLO4*
+### **Professional Network Scanning & Security Analysis Toolkit**
 
----
-
-📌 Project Description
-
-GHOST_SCANNER is a full-featured, GUI-based network security toolkit built entirely in Python with Tkinter. Designed with a Matrix-inspired hacker terminal aesthetic, it goes beyond a basic port scanner to deliver a complete reconnaissance suite — port scanning, ping diagnostics, network intelligence, and banner grabbing — all wrapped in a live, real-time terminal-style interface.
+*Final Term Project — Open Source Software Development (OSSD) | CLO4*
 
 ---
 
- ✨ Features
+## 📌 Overview
 
-| Feature | Description |
-|---|---|
-| **Multi-threaded Port Scanner** | Scans hundreds of ports concurrently using `ThreadPoolExecutor` |
-| **Service Detection** | Identifies 70+ services by port number |
-| **Banner Grabbing Tool** | Dedicated module to fingerprint any service on any port |
-| **Ping Diagnostics Tool** | Built-in ICMP ping utility with live terminal-style output |
-| **Network Info Module** | Displays hostname, local IP, external IP, and DNS resolution checks |
-| **Risk Assessment** | Color-codes ports as Critical / High / Medium / Low / Info |
-| **Live Results** | Results stream in real time as ports are discovered |
-| **Scan History** | All scans stored in SQLite; browse and replay anytime |
-| **Analytics Dashboard** | KPI cards, bar charts, top open services frequency analysis |
-| **Export to CSV/JSON** | One-click export of scan results |
-| **Saved Targets** | Save frequently scanned hosts for quick access |
-| **Elite Hacker UI** | Matrix-green terminal theme, ASCII art banner, live clock, scrolling ticker |
+GHOST_SCANNER is a desktop-based network security application created in Python using Tkinter. It is designed to perform fast and efficient network reconnaissance through multiple built-in tools. The software combines port scanning, network testing, service identification, and system analysis in one place.
+
+With its hacker-style terminal interface and live output system, it offers a practical environment for understanding network behavior and performing security checks.
 
 ---
 
-🖥️ Screenshots
- Analytics Dashboard
+## ✨ Main Features
+
+| Feature                         | Details                                                                          |
+| ------------------------------- | -------------------------------------------------------------------------------- |
+| **Thread-Based Port Scanning**  | Scans multiple ports at the same time for better speed and performance           |
+| **Port Service Recognition**    | Detects and labels 70+ common services based on port numbers                     |
+| **Banner Detection Tool**       | Connects to services and collects banners for identification                     |
+| **Ping Utility**                | Checks target availability using ICMP packets                                    |
+| **Network Information Checker** | Shows hostname, internal IP, public IP, and DNS test results                     |
+| **Port Risk Classification**    | Marks ports according to severity levels such as Critical, High, Medium, and Low |
+| **Live Scan Monitoring**        | Displays results instantly during scanning                                       |
+| **Scan History Database**       | Stores all completed scans in SQLite for later review                            |
+| **Statistics Dashboard**        | Shows charts, KPIs, and service frequency reports                                |
+| **Data Export Support**         | Allows exporting results into CSV and JSON files                                 |
+| **Saved Host Manager**          | Stores frequently scanned targets for quick use                                  |
+| **Terminal Theme UI**           | Matrix-inspired green interface with animated terminal effects                   |
+
+---
+
+## 🖼️ Screenshots
+
+### Dashboard View
+
 ![Dashboard](assets/screenshot_dashboard.png)
 
-### Port Scanner — Live Results
+### Port Scanner Interface
+
 ![Port Scan](assets/screenshot_port_scan.png)
 
-### Ping Diagnostics Tool
+### Ping Utility Window
+
 ![Ping Tool](assets/screenshot_ping_tool.png)
 
-### Banner Grabber — Service Fingerprinting
+### Banner Detection Module
+
 ![Banner Grab](assets/screenshot_banner_grab.png)
 
 ---
 
- 🛠️ Technologies Used
+## 🛠️ Tools & Technologies
 
-| Category | Technology |
-|---|---|
-| Language | Python 3.8+ |
-| GUI Framework | Tkinter (ttk + tk) |
-| Database | SQLite3 (built-in) |
-| Concurrency | `concurrent.futures.ThreadPoolExecutor`, `threading` |
-| Networking | `socket`, `subprocess` (standard library) |
-| Version Control | Git + GitHub |
+| Category             | Technology                        |
+| -------------------- | --------------------------------- |
+| Programming Language | Python 3.8+                       |
+| GUI Library          | Tkinter (ttk + tk)                |
+| Database System      | SQLite3                           |
+| Multithreading       | `ThreadPoolExecutor`, `threading` |
+| Networking Modules   | `socket`, `subprocess`            |
+| Version Control      | Git + GitHub                      |
 
-**No external dependencies required!** Everything uses Python's standard library.
+**No third-party libraries are needed.** The whole project uses Python standard libraries.
 
 ---
 
- ⚙️ Setup & Running
+## ⚙️ Installation Guide
 
-Prerequisites
-- Python 3.8 or newer
-- No pip installs needed (all standard library)
+### Requirements
 
-Clone & Run
+* Python 3.8 or higher
+* No extra package installation required
+
+### Clone and Start
+
 ```bash
 git clone https://github.com/bellatorsaleh/PortScannerPro.git
 cd PortScannerPro
 python main.py
 ```
 
-Project Structure
-```
+---
+
+## 📁 Project Layout
+
+```bash
 PortScannerPro/
-├── main.py                  # Entry point
+├── main.py                  # Main file to start application
 ├── README.md
 ├── requirements.txt
-├── GITHUB_WORKFLOW.md        # Full Git workflow guide
-├── data/                     # SQLite database (auto-created)
+├── GITHUB_WORKFLOW.md
+├── data/
 │   └── portscanner.db
-├── assets/                   # Screenshots
+├── assets/
 │   ├── screenshot_dashboard.png
 │   ├── screenshot_port_scan.png
 │   ├── screenshot_ping_tool.png
 │   └── screenshot_banner_grab.png
 └── modules/
     ├── __init__.py
-    ├── database.py            # SQLite data layer
-    ├── scanner.py              # Core scanning engine
-    ├── main_window.py          # Root window + elite theme
-    ├── scan_tab.py              # 🖥 Screen 1: Scanner + Ping + NetInfo + Banner Grab
-    ├── history_tab.py           # 🖥 Screen 2: History
-    ├── dashboard_tab.py         # 🖥 Screen 3: Dashboard
-    └── settings_tab.py          # 🖥 Screen 4: Settings
+    ├── database.py
+    ├── scanner.py
+    ├── main_window.py
+    ├── scan_tab.py
+    ├── history_tab.py
+    ├── dashboard_tab.py
+    └── settings_tab.py
 ```
 
 ---
 
-🗺️ Application Screens
+## 🖥️ System Modules
 
-Screen 1 — Scanner (with 4 internal tools)
-- **Port Scan** — target input, presets, custom range, live results table with risk coloring
-- **Ping Tool** — ICMP ping with configurable packet count, live terminal output
-- **Net Info** — hostname, local/external IP, DNS resolution checks for common hosts
-- **Banner Grab** — connect to any host:port and capture the raw service banner
-- Export to CSV and JSON
-- Live terminal-style scan log
+### Screen 1 — Scanner Panel
 
- Screen 2 — History Tab
-- Master-detail view: sessions → open ports
-- Delete sessions from history
-- View banner grabs from past scans
+Contains 4 built-in tools:
 
-Screen 3 — Dashboard Tab
-- 4 KPI cards: total scans, open ports found, unique targets, avg scan time
-- Recent activity table (last 20 scans)
-- Top open services bar chart
-
-Screen 4 — Settings Tab
-- Persist default timeout, threads, banner options
-- Saved Targets manager (add/delete hosts)
-- About info
+* **Port Scanner** — Scan targets using presets or custom port ranges
+* **Ping Tool** — Test connectivity and response time
+* **Network Info** — View host and DNS-related information
+* **Banner Grabber** — Capture service banners from target ports
+* Supports CSV and JSON export
+* Includes live terminal logs
 
 ---
 
-🌐 GitHub Workflow
+### Screen 2 — History Section
 
-- **Branching strategy:** `main` → feature branches per member
-- **PRs required** for all merges into `main`
-- **Issues** used for task tracking
-
-Branches
-| Branch | Owner | Feature |
-|---|---|---|
-| `feature/scanner-core` | Syed Ali Saleh Abbas Naqvi | Core scanning engine, database, splash screen |
-| `feature/scan-tab` | Muhammad Ahmad Asim | Main window, scan tab, ping/netinfo/banner tools |
-| `feature/history-dashboard` | Muhammad Ali Inam | History tab, dashboard tab, settings tab |
+* Displays all previous scan sessions
+* Shows open ports found in each session
+* Remove old records
+* Access previous banner results
 
 ---
 
- 👥 Team Contributions
+### Screen 3 — Analytics Dashboard
 
-| Member | Role | Contributions |
-|---|---|---|
-| **Syed Ali Saleh Abbas Naqvi** | Group Lead | Project planning, repository setup, scanner engine, database module, README |
-| **Muhammad Ahmad Asim** | Developer | Main window, elite hacker UI theme, scan tab, ping/net-info/banner-grab tools, export features |
-| **Muhammad Ali Inam** | Developer | History tab, analytics dashboard, settings tab |
+Provides:
+
+* Total number of scans
+* Number of open ports detected
+* Total unique targets scanned
+* Average scan duration
+* Latest scan activity table
+* Most common open services graph
 
 ---
 
- 🔗 Links
+### Screen 4 — Settings Panel
 
-- Repository: `https://github.com/bellatorsaleh/PortScannerPro`
-- Issues: `https://github.com/bellatorsaleh/PortScannerPro/issues`
-- Pull Requests: `https://github.com/bellatorsaleh/PortScannerPro/pulls`
+Includes:
 
+* Timeout and thread configuration
+* Banner grab options
+* Manage saved target list
+* Application information
 
+---
+
+## 🌍 GitHub Development Process
+
+Project follows a branch-based workflow:
+
+* `main` branch for stable code
+* Separate feature branches for each team member
+* Pull Requests required before merging
+* GitHub Issues used for task organization
+
+### Branches
+
+| Branch                      | Assigned To                | Task                                                      |
+| --------------------------- | -------------------------- | --------------------------------------------------------- |
+| `feature/scanner-core`      | Syed Ali Saleh Abbas Naqvi | Core scanner logic, database, splash screen               |
+| `feature/scan-tab`          | Muhammad Ahmad Asim        | UI design, scanner tab, ping tool, network tools, exports |
+| `feature/history-dashboard` | Muhammad Ali Inam          | History records, dashboard analytics, settings module     |
+
+---
+
+## 👥 Team Work Distribution
+
+| Member                         | Position    | Responsibilities                                                            |
+| ------------------------------ | ----------- | --------------------------------------------------------------------------- |
+| **Syed Ali Saleh Abbas Naqvi** | Team Leader | Planning, repository setup, scanner backend, database, documentation        |
+| **Muhammad Ahmad Asim**        | Developer   | Main GUI, hacker theme, scanner tab, ping, net-info, banner module, exports |
+| **Muhammad Ali Inam**          | Developer   | History management, dashboard analytics, settings page                      |
+
+---
+
+## 🔗 Project Links
+
+* Repository: https://github.com/bellatorsaleh/PortScannerPro
+* Issues: https://github.com/bellatorsaleh/PortScannerPro/issues
+* Pull Requests: https://github.com/bellatorsaleh/PortScannerPro/pulls
