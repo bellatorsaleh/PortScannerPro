@@ -5,7 +5,7 @@
 
 ---
 
-## 📌 Project Description
+📌 Project Description
 
 GHOST_SCANNER is a full-featured, GUI-based network security toolkit built entirely in Python with Tkinter. Designed with a Matrix-inspired hacker terminal aesthetic, it goes beyond a basic port scanner to deliver a complete reconnaissance suite — port scanning, ping diagnostics, network intelligence, and banner grabbing — all wrapped in a live, real-time terminal-style interface.
 
@@ -31,8 +31,7 @@ GHOST_SCANNER is a full-featured, GUI-based network security toolkit built entir
 ---
 
 🖥️ Screenshots
-
-### Analytics Dashboard
+ Analytics Dashboard
 ![Dashboard](assets/screenshot_dashboard.png)
 
 ### Port Scanner — Live Results
