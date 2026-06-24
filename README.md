@@ -60,20 +60,20 @@ GHOST_SCANNER is a full-featured, GUI-based network security toolkit built entir
 
 ---
 
-## ⚙️ Setup & Running
+ ⚙️ Setup & Running
 
-### Prerequisites
+Prerequisites
 - Python 3.8 or newer
 - No pip installs needed (all standard library)
 
-### Clone & Run
+Clone & Run
 ```bash
 git clone https://github.com/bellatorsaleh/PortScannerPro.git
 cd PortScannerPro
 python main.py
 ```
 
-### Project Structure
+Project Structure
 ```
 PortScannerPro/
 ├── main.py                  # Entry point
@@ -100,9 +100,9 @@ PortScannerPro/
 
 ---
 
-## 🗺️ Application Screens
+🗺️ Application Screens
 
-### Screen 1 — Scanner (with 4 internal tools)
+Screen 1 — Scanner (with 4 internal tools)
 - **Port Scan** — target input, presets, custom range, live results table with risk coloring
 - **Ping Tool** — ICMP ping with configurable packet count, live terminal output
 - **Net Info** — hostname, local/external IP, DNS resolution checks for common hosts
@@ -110,41 +110,39 @@ PortScannerPro/
 - Export to CSV and JSON
 - Live terminal-style scan log
 
-### Screen 2 — History Tab
+ Screen 2 — History Tab
 - Master-detail view: sessions → open ports
 - Delete sessions from history
 - View banner grabs from past scans
 
-### Screen 3 — Dashboard Tab
+Screen 3 — Dashboard Tab
 - 4 KPI cards: total scans, open ports found, unique targets, avg scan time
 - Recent activity table (last 20 scans)
 - Top open services bar chart
 
-### Screen 4 — Settings Tab
+Screen 4 — Settings Tab
 - Persist default timeout, threads, banner options
 - Saved Targets manager (add/delete hosts)
 - About info
 
 ---
 
-## 🌐 GitHub Workflow
+🌐 GitHub Workflow
 
 - **Branching strategy:** `main` → feature branches per member
 - **PRs required** for all merges into `main`
 - **Issues** used for task tracking
 
-### Branches
+Branches
 | Branch | Owner | Feature |
 |---|---|---|
 | `feature/scanner-core` | Syed Ali Saleh Abbas Naqvi | Core scanning engine, database, splash screen |
 | `feature/scan-tab` | Muhammad Ahmad Asim | Main window, scan tab, ping/netinfo/banner tools |
 | `feature/history-dashboard` | Muhammad Ali Inam | History tab, dashboard tab, settings tab |
 
-See [GITHUB_WORKFLOW.md](GITHUB_WORKFLOW.md) for the complete step-by-step Git guide.
-
 ---
 
-## 👥 Team Contributions
+ 👥 Team Contributions
 
 | Member | Role | Contributions |
 |---|---|---|
@@ -160,14 +158,4 @@ See [GITHUB_WORKFLOW.md](GITHUB_WORKFLOW.md) for the complete step-by-step Git g
 - Issues: `https://github.com/bellatorsaleh/PortScannerPro/issues`
 - Pull Requests: `https://github.com/bellatorsaleh/PortScannerPro/pulls`
 
----
- ⚠️ Disclaimer
 
-This tool is built for **educational purposes** as part of a university project.  
-Only scan systems you own or have explicit written permission to test.
-
----
-
- 📄 License
-
-MIT License — Open Source. See `LICENSE` file.
