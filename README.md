@@ -11,7 +11,7 @@ GHOST_SCANNER is a full-featured, GUI-based network security toolkit built entir
 
 ---
 
-## ✨ Features
+ ✨ Features
 
 | Feature | Description |
 |---|---|
@@ -30,7 +30,7 @@ GHOST_SCANNER is a full-featured, GUI-based network security toolkit built entir
 
 ---
 
-## 🖥️ Screenshots
+🖥️ Screenshots
 
 ### Analytics Dashboard
 ![Dashboard](assets/screenshot_dashboard.png)
