@@ -1,4 +1,4 @@
-# ◈ GHOST_SCANNER (PortScannerPro v3.0)
+ ◈ GHOST_SCANNER (PortScannerPro v3.0)
 
 **Elite Network Reconnaissance & Port Scanning Framework**  
 *Final Term Project — Open Source Software Development (OSSD) · CLO4*
@@ -154,21 +154,20 @@ See [GITHUB_WORKFLOW.md](GITHUB_WORKFLOW.md) for the complete step-by-step Git g
 
 ---
 
-## 🔗 Links
+ 🔗 Links
 
 - Repository: `https://github.com/bellatorsaleh/PortScannerPro`
 - Issues: `https://github.com/bellatorsaleh/PortScannerPro/issues`
 - Pull Requests: `https://github.com/bellatorsaleh/PortScannerPro/pulls`
 
 ---
-
-## ⚠️ Disclaimer
+ ⚠️ Disclaimer
 
 This tool is built for **educational purposes** as part of a university project.  
 Only scan systems you own or have explicit written permission to test.
 
 ---
 
-## 📄 License
+ 📄 License
 
 MIT License — Open Source. See `LICENSE` file.
