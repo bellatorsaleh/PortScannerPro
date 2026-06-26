@@ -1,5 +1,5 @@
  ◈ GHOST_SCANNER (PortScannerPro v3.0)
-*Final Term Project — Open Source Software Development (OSSD) 
+Final Term Project — Open Source Software Development (OSSD) 
 
 ---
 
@@ -54,7 +54,7 @@ GHOST_SCANNER is a full-featured, GUI-based network security toolkit built entir
 | Networking | `socket`, `subprocess` (standard library) |
 | Version Control | Git + GitHub |
 
-**No external dependencies required!** Everything uses Python's standard library.
+No external dependencies required!** Everything uses Python's standard library.
 
 ---
 
